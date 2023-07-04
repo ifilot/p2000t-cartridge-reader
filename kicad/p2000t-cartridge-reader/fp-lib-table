@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name "Arduino")(type "KiCad")(uri "${KIPRJMOD}/Components/Arduino.pretty")(options "")(descr ""))
+  (lib (name "CartridgeReader")(type "KiCad")(uri "${KIPRJMOD}/Components/p2000t-cartridge-reader.pretty")(options "")(descr ""))
+)
