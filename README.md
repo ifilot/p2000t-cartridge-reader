@@ -8,6 +8,8 @@ files can be found for the arduino shield board. Finally, in the [script](script
 folder a number of Python scripts can be found interfacing with the Arduino
 Leonardo board to dump cartridge roms to a file.
 
+![Arduino hat](img/arduino_hat.jpg)
+
 ## Kicad scheme
 
 ![Kicad scheme](img/p2000t-cartridge-reader.svg)
@@ -23,7 +25,8 @@ the `readrom.py` file to dump the cartridges.
 ## Python files
 
 The following three Python files are provided to interface with the Arduino
-Leonardo Board.
+Leonardo Board. To work with these files, you need to have the
+[pyserial](https://pypi.org/project/pyserial/) package installed.
 
 * [serialtest.py](scripts/serialtest.py): Tests whether Python can succesfully
   interface with the Arduino Leonardo and the cartridge reader firmware.
@@ -49,3 +52,13 @@ Manual is erroneous and has the CARSEL1 (CS1) and CARSEL2 (CS2) pins swapped.**
 |`0x02`| HIGH      | HIGH      | LOW       | LOW  | HIGH | LOW  |
 |`0x03`| LOW       | HIGH      | LOW       | HIGH | HIGH | LOW  |
 | N/A  | x         | HIGH      | HIGH      | x    | x    | HIGH |
+
+## Bill of materials
+
+* Arduino Leonardo
+* 2x15 pin edge connector; pitch 3.96mm
+* 74HCT4040N or similar
+
+## Picture
+
+![Arduino hat with cartridge](img/arduino_hat_cartridge.jpg)
