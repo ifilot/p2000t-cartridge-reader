@@ -52,20 +52,20 @@ def main():
     f.write(data)
     f.close()
     
-    def find_port(self):
-        """
-        Find the correct port by looping over all ports and looking for one
-        that has an hardware id matching an Arduino Leonardo
-        """
-        ports = serial.tools.list_ports.comports()
-        pattern = r'USB VID:PID=([0-9:]+) SER=.*'
-        for port,desc,hwid in ports:
-            match = re.match(pattern, hwid)
-            if match is not None:
-                if match.group(1) == '2341:8036':
-                    return port
-        
-        return False
+def find_port():
+    """
+    Find the correct port by looping over all ports and looking for one
+    that has an hardware id matching an Arduino Leonardo
+    """
+    ports = serial.tools.list_ports.comports()
+    pattern = r'USB VID:PID=([0-9:]+) SER=.*'
+    for port,desc,hwid in ports:
+        match = re.match(pattern, hwid)
+        if match is not None:
+            if match.group(1) == '2341:8036':
+                return port
+    
+    return False
 
 if __name__ == '__main__':
     main()
