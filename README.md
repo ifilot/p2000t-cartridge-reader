@@ -62,3 +62,10 @@ Manual is erroneous and has the CARSEL1 (CS1) and CARSEL2 (CS2) pins swapped.**
 ## Picture
 
 ![Arduino hat with cartridge](img/arduino_hat_cartridge.jpg)
+
+## Licensing
+
+* All source code, i.e. the [firmware](arduino/cartridge_reader_firmware) and the Python [scripts](scripts)
+  are released under a [GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.html).
+* The hardware files to (re)produce the Arduino board are released under the 
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
