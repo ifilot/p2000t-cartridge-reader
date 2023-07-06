@@ -5,6 +5,7 @@ import serial
 import serial.tools.list_ports
 import hashlib
 import numpy as np
+import re
 
 #
 # Test that the P2000T Cartridge Reader can read the BASIC cartridge.
@@ -49,19 +50,7 @@ class TestStringMethods(unittest.TestCase):
         ser.close()
 
         np.testing.assert_equal(capture, original)
-
-    def find_port(self):
-        """
-        Find the correct port by looping over all ports and looking for one
-        that has an hardware id matching an Arduino Leonardo
-        """
-        ports = serial.tools.list_ports.comports()
-        for port,desc,hwid in ports:
-            if hwid.split()[1].split('=')[1] == '2341:8036':
-                return port
-        
-        return False
-    
+   
     def read_rom(self, filename):
         """
         Read rom file
@@ -72,6 +61,21 @@ class TestStringMethods(unittest.TestCase):
            
         f.close()
         return data
+
+    def find_port(self):
+        """
+        Find the correct port by looping over all ports and looking for one
+        that has an hardware id matching an Arduino Leonardo
+        """
+        ports = serial.tools.list_ports.comports()
+        pattern = r'USB VID:PID=([0-9:]+) SER=.*'
+        for port,desc,hwid in ports:
+            match = re.match(pattern, hwid)
+            if match is not None:
+                if match.group(1) == '2341:8036':
+                    return port
+        
+        return False
 
 if __name__ == '__main__':
     unittest.main()

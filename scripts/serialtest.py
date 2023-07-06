@@ -3,6 +3,7 @@
 import unittest
 import serial
 import serial.tools.list_ports
+import re
 
 #
 # Test that the cartridge interface is working
@@ -11,8 +12,7 @@ import serial.tools.list_ports
 class TestStringMethods(unittest.TestCase):
     
     def test_serial_interface(self):
-        port = self.find_port()
-        
+        port = self.find_port()        
         self.assertTrue(port)
         
         ser = serial.Serial(port, 
@@ -37,9 +37,12 @@ class TestStringMethods(unittest.TestCase):
         that has an hardware id matching an Arduino Leonardo
         """
         ports = serial.tools.list_ports.comports()
+        pattern = r'USB VID:PID=([0-9:]+) SER=.*'
         for port,desc,hwid in ports:
-            if hwid.split()[1].split('=')[1] == '2341:8036':
-                return port
+            match = re.match(pattern, hwid)
+            if match is not None:
+                if match.group(1) == '2341:8036':
+                    return port
         
         return False
 
